@@ -1,0 +1,69 @@
+<?php View::notify(); ?>
+
+<script type="text/javascript">
+    $(function() {
+        $('table').mkcGrid({
+            form_search: false,
+            order_attr: '<?php echo (APP_AJAX) ? 'class="mkc-ajax mkc-spinner"' : ''; ?>',
+            order_action: $.KumbiaPHP.publicPath+"sistema/recurso/listar/"
+        });
+    });
+</script>
+
+<div class="container-fluid mkc-shell-view">
+
+    <?php View::process($page_module, $page_title, $set_title); ?>
+
+    <div class="btn-toolbar btn-toolbar-top">
+        <div class="btn-actions">
+            <?php echo MkcHtml::button("sistema/recurso/agregar/", 'agregar', array('class'=>'btn-success'), 'check', APP_AJAX); ?>
+        </div>
+    </div>
+
+    <div class="mkc-overflow">
+
+        <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+            <thead>
+                <tr>
+                    <th>NUM</th>
+                    <th class="col-collapse" data-search="modulo">MODULO</th>
+                    <th class="col-collapse" data-search="controlador">CONTROLADOR</th>
+                    <th class="col-collapse" data-search="accion">ACCION</th>
+                    <th class="col-collapse">DESCRIPCION</th>
+                    <th class="col-collapse" data-search="activo">ESTADO</th>
+                    <th class="btn-actions no-responsive">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($recursos->items as $recurso): ?>
+                    <?php $key_upd = MkcSecurity::getKey($recurso->id, 'upd_recurso'); ?>
+                    <?php $key_ina = MkcSecurity::getKey($recurso->id, 'inactivar_recurso'); ?>
+                    <?php $key_rea = MkcSecurity::getKey($recurso->id, 'reactivar_recurso'); ?>
+                    <?php $key_del = MkcSecurity::getKey($recurso->id, 'eliminar_recurso'); ?>
+                    <tr>
+                        <td><?php echo $recursos->counter; ?></td>
+                        <td><?php echo empty($recurso->modulo) ? '' : $recurso->modulo; ?></td>
+                        <td><?php echo empty($recurso->controlador) ? '' : $recurso->controlador; ?></td>
+                        <td><?php echo empty($recurso->accion) ? '' : $recurso->accion; ?></td>
+                        <td><?php echo $recurso->descripcion; ?></td>
+                        <td><?php echo ($recurso->activo == Recurso::ACTIVO) ? '<span class="label label-success">Activo</span>' : '<span class="label label-important">Bloqueado</span>'; ; ?></td>
+                        <td>
+                            <?php echo MkcHtml::buttonTable('Modificar recurso', "sistema/recurso/editar/$key_upd/", null, 'info', 'edit'); ?>
+                            <?php if($recurso->activo == Recurso::ACTIVO) { ?>
+                                <?php echo MkcHtml::buttonTable('Bloquear recurso', "sistema/recurso/estado/inactivar/$key_ina/", null, 'success', 'flag'); ?>
+                            <?php } else { ?>
+                                <?php echo MkcHtml::buttonTable('Reactivar recurso', "sistema/recurso/estado/reactivar/$key_rea/", null, 'danger', 'flag'); ?>
+                            <?php } ?>
+                            <?php echo MkcHtml::buttonTable('Eliminar recurso', "sistema/recurso/eliminar/$key_del/", array('class'=>'js-confirm', 'confirm-title'=>'Eliminar recurso', 'confirm-body'=>'Está seguro de eliminar este recurso? <br />Recuerda que esta operación no se puede reversar.'), 'danger', 'ban-circle'); ?>
+                        </td>
+                    </tr>
+                    <?php $recursos->counter++; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    </div>
+
+    <?php View::partial('paginators/default', false, array('page'=>$recursos, 'url'=>"sistema/recurso/listar/$order/")); ?>
+
+</div>

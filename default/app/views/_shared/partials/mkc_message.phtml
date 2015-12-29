@@ -1,0 +1,9 @@
+<?php if(isset($id)) { ?>
+<div id="<?php echo $id; ?>" class="mkc-message">
+    <?php View::content(); ?>    
+</div>
+<?php } else { ?>
+<div id="mkc-message" class="mkc-message">
+    <?php View::content(); ?>    
+</div>
+<?php } ?>

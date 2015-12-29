@@ -1,0 +1,66 @@
+<?php View::notify(); ?>
+
+<script type="text/javascript">
+    $(function() {
+        $('table').mkcGrid({
+            order_attr: '<?php echo (APP_AJAX) ? 'class="mkc-ajax mkc-spinner"' : ''; ?>',
+            order_action: $.KumbiaPHP.publicPath+"sistema/perfil/listar/"
+        });
+    });
+</script>
+
+<div class="container-fluid mkc-shell-view">
+
+    <?php View::process($page_module, $page_title, $set_title); ?>
+
+    <div class="btn-toolbar btn-toolbar-top">
+        <div class="btn-actions">
+            <?php echo MkcHtml::button("sistema/perfil/agregar/", 'agregar', array('class'=>'btn-success'), 'check', APP_AJAX); ?>
+        </div>
+    </div>
+
+    <div class="mkc-overflow">
+
+        <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+            <thead>
+                <tr>
+                    <th>NUM</th>
+                    <th class="col-collapse" data-search="perfil">PERFIL</th>
+                    <th class="col-collapse" data-search="plantilla">PLANTILLA</th>
+                    <th class="col-collapse" data-search="usuarios">USUARIOS</th>
+                    <th class="col-collapse" data-search="estado">ESTADO</th>
+                    <th class="btn-actions no-responsive">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($perfiles->items as $perfil): ?>
+                    <?php $key_show = MkcSecurity::getKey($perfil->id, 'show_perfil'); ?>
+                    <?php $key_upd = MkcSecurity::getKey($perfil->id, 'upd_perfil'); ?>
+                    <?php $key_inac = MkcSecurity::getKey($perfil->id, 'inactivar_perfil'); ?>
+                    <?php $key_reac = MkcSecurity::getKey($perfil->id, 'reactivar_perfil'); ?>
+                    <tr>
+                        <td><?php echo $perfiles->counter; ?></td>
+                        <td><?php echo $perfil->perfil; ?></td>
+                        <td><?php echo $perfil->plantilla; ?></td>
+                        <td><?php echo $perfil->usuarios; ?></td>
+                        <td><?php echo ($perfil->estado == Perfil::ACTIVO) ? '<span class="label label-success">Activo</span>' : '<span class="label label-important">Bloqueado</span>'; ; ?></td>
+                        <td>
+                            <?php echo MkcHtml::buttonTable('Ver perfil', "sistema/perfil/ver/$key_show/", null, 'info', 'search'); ?>
+                            <?php echo MkcHtml::buttonTable('Modificar perfil', "sistema/perfil/editar/$key_upd/", null, 'info', 'edit'); ?>
+                            <?php if($perfil->estado == Perfil::ACTIVO) { ?>
+                                <?php echo MkcHtml::buttonTable('Inactivar perfil', "sistema/perfil/estado/inactivar/$key_inac/", null, 'success', 'flag'); ?>
+                            <?php } else { ?>
+                                <?php echo MkcHtml::buttonTable('Reactivar perfil', "sistema/perfil/estado/reactivar/$key_reac/", null, 'danger', 'flag'); ?>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <?php $perfiles->counter++; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    </div>
+
+    <?php View::partial('paginators/default', false, array('page'=>$perfiles, 'url'=>"sistema/perfil/listar/$order/")); ?>
+
+</div>

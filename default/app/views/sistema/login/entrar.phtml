@@ -1,0 +1,58 @@
+<script type="text/javascript">
+    function onSend() {
+        var bValid = true;
+        var tips = $(".mkc-validate-tips");
+        var login = $("#login");
+        var pass = $("#password");
+        bValid = bValid && MkcCheckLength(tips,login,"El usuario", 3);
+        if (bValid) { login.removeClass('error'); }
+        bValid = bValid && MkcCheckLength(tips, pass,"La contraseña", 5);
+        if (bValid) { pass.removeClass('error'); }
+        bValid = bValid && MkcCheckRegexp(tips, login,/^([A-ZÑ0-9])+$/i, "El usuario debe tener caracteres alfanuméricos.");
+        if (bValid) { login.removeClass('error'); }
+        bValid = bValid && MkcCheckRegexp(tips, pass,/^([A-ZÑ0-9\.\-\#\?\_])+$/i,"La clave debe tener caracteres [A-Z]-[0-9]-[#?.-]");
+        if (bValid) { pass.removeClass('error'); }
+        if (bValid) { login.removeClass('error');pass.removeClass('error');}
+        return bValid;
+    }
+</script>
+
+<?php echo MkcForm::open('sistema/login/entrar/', '', array('class'=>'no-ajax mkc-validate', 'id'=>'formulario', 'before-send'=>'onSend();')); ?>
+
+<?php echo MkcForm::focus('login'); ?>
+
+<noscript><h5 style="text-align: center;">¡Tu navegador no soporta Javascript!.. Activa el uso de Javascript en tu navegador.</h5></noscript>
+
+<div style="" class="mkc-validate-tips"></div>
+<p class="login-box-msg">Ingresa tu usuario y contraseña:
+    <?php View::notify(); ?>
+</p>
+<div class="form-group has-feedback">
+    <input type="text" id="login" name="login" value="" placeholder="Usuario" class="form-control" />
+    <span class="icon ion-person form-control-feedback"></span>
+</div>
+<div class="form-group has-feedback">
+    <input type="password" id="password" name="password" value="" placeholder="Contraseña" class="form-control"/>
+    <span class="icon ion-lock-combination form-control-feedback"></span>
+</div>
+<div class="row">
+    <div class="col-xs-8">
+        <div class="checkbox iCheck">
+            <label>
+                <input type="checkbox"> Recuerdame
+            </label>
+        </div>
+    </div>
+    <!-- /.col -->
+    <div class="col-xs-4">
+        <?php echo MkcForm::submit2('Ingresar', array('class'=>'btn btn-primary btn-block btn-flat'), 'submit'); ?>
+    </div>
+    <!-- /.col -->
+</div>
+<div>
+    <?php echo MkcForm::hidden('mode', null, 'auth'); ?>
+</div>
+<div>
+    <?php echo MkcForm::token(); ?>
+</div>
+<?php echo MkcForm::close() ?>
