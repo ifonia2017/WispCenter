@@ -34,7 +34,7 @@
     </script>
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue">
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
@@ -98,8 +98,8 @@
     <!-- FastClick -->
     <script src="<?php echo PUBLIC_PATH; ?>plugins/fastclick/fastclick.js"></script>
     <script>
-        $(function () {
-                $("#table").DataTable();
+        $(document).ready(function () {
+                $("#table_id").DataTable();
             });
     </script>
     <?php echo MkcDialog::alert('Se ha producido un error en la validación del formulario.', 'subtext: Verifica los datos e intenta nuevamente.', 'title: Formulario incorrecto', 'name: errorForm'); ?>
