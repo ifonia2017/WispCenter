@@ -60,6 +60,7 @@ class Usuario extends ActiveRecord {
                         } 
                         Session::set('nombre', $usuario->nombre);
                         Session::set('apellido', $usuario->apellido);                        
+                        Session::set('cargo', $usuario->cargo);                        
                         Session::set('fotografia', $usuario->fotografia);                        
                         Session::set("ip", MkcUtils::getIp());
                         Session::set('perfil', $usuario->perfil);
@@ -89,7 +90,7 @@ class Usuario extends ActiveRecord {
      * @return object Usuario
      */
     public static function getUsuarioLogueado() {
-        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, persona.fotografia, estado_usuario.estado_usuario';
+        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, persona.fotografia, persona.cargo, estado_usuario.estado_usuario';
         $join = "INNER JOIN persona ON persona.id = usuario.persona_id ";
         $join.= "INNER JOIN perfil ON perfil.id = usuario.perfil_id ";
         $join.= self::getInnerEstado();

@@ -117,7 +117,7 @@
             <?php echo MkcHtml::img('upload/personas/'.Session::get('fotografia'), Session::get('login'), array('class'=>'img-circle')); ?>
             <p>
               <?php echo Session::get('nombre').' '.Session::get('apellido'); ?>
-              <small>Member since Nov. 2012</small>
+              <small><?php echo Session::get('cargo') ?></small>
             </p>
           </li>
           <!-- Menu Body -->

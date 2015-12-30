@@ -41,7 +41,7 @@ class MkcHtml extends Html {
         }
         $action = ($action!='#') ? PUBLIC_PATH.trim($action, '/').'/' : '#';        
         if($icon) {
-            $text = "<i class=\"$icon icon-expand\"></i> $text";
+            $text = "<i class=\"fa fa-$icon icon-expand\"></i> $text";
         }        
         return "<a href=\"$action\" $attrs >$text</a>";
     }
@@ -81,7 +81,7 @@ class MkcHtml extends Html {
         $action = trim($action, '/').'/';
         $text = (!empty($text) && $icon) ? '<span class="hidden-phone">'.strtoupper($text).'</span>' : strtoupper($text);
         if($icon) {
-            $text = '<i class="btn-icon-only icon-'.$icon.'"></i> '.$text;
+            $text = '<i class="btn-icon-only fa fa-'.$icon.'"></i> '.$text;
         }
         return '<a href="' . PUBLIC_PATH . "$action\" $attrs >$text</a>";
     }

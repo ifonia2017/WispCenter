@@ -1,24 +1,19 @@
-<?php View::notify(); ?>
-
-<script type="text/javascript">
-    $(function() {
-        $('table').mkcGrid({
-            form_search: true,
-            form_action: '<?php echo PUBLIC_PATH; ?>sistema/acceso/buscar/',
-            form_load_data : 'mkc-shell-content',
-            order_attr: '<?php echo (APP_AJAX) ? 'class="mkc-ajax mkc-spinner"' : ''; ?>',
-            order_action: $.KumbiaPHP.publicPath+"sistema/acceso/listar/"
-        });
-    });
-</script>
-
-<div class="container-fluid mkc-shell-view">
-
-    <?php View::process($page_module, $page_title, $set_title); ?>
-
+<section class="content-header">
+        <?php View::process($page_module, $page_title, $set_title); ?>
+    </section>
+    <section class="content">
+    <div class="mkc-shell-view">
+        <?php View::notify(); ?>
+        <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">
+                Lista de Accesos
+            </h3>
+        </div>
+            <div class="box-body">
     <div class="mkc-overflow">
 
-        <table class="table table-bordered table-hover table-striped table-condensed table-responsive">
+        <table id="table" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>NUM</th>
@@ -39,7 +34,7 @@
                         <td><?php echo $acceso->nombre; ?></td>
                         <td><?php echo $acceso->apellido; ?></td>
                         <td><?php echo $acceso->ip; ?></td>
-                        <td><?php echo ($acceso->tipo_acceso == Acceso::ENTRADA) ? '<span class="label label-success">Entrada</span>' : '<span class="label label-important">Salida</span>'; ; ?></td>
+                        <td><?php echo ($acceso->tipo_acceso == Acceso::ENTRADA) ? '<span class="badge bg-green">Entrada</span>' : '<span class="badge bg-orange">Salida</span>'; ; ?></td>
                     </tr>
                     <?php $accesos->counter++; ?>
                 <?php endforeach; ?>
@@ -48,6 +43,8 @@
 
     </div>
 
-    <?php View::partial('paginators/default', false, array('page'=>$accesos, 'url'=>"sistema/acceso/listar/$order/")); ?>
-
-</div>
+                <?php View::partial('paginators/default', false, array('page'=>$acceso, 'url'=>"sistema/acceso/listar/$order/")); ?>
+            </div>
+        </div>
+        </div>
+    </section>

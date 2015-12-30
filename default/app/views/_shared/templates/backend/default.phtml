@@ -20,6 +20,8 @@
     <?php Tag::css('admin/skins/skin-blue.min') ?>
     <?php Tag::css('file-upload'); ?>
     <?php echo Html::includeCss(); ?>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?php echo PUBLIC_PATH; ?>plugins/datatables/dataTables.bootstrap.css">
     <?php if(!APP_LOCAL) { ?>
     <link href="http://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet" type="text/css">
     <?php } ?>
@@ -57,23 +59,23 @@
                     </div>
                 </div>
                 <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form>
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
                 <?php MkcMenu::load(Menu::BACKEND, Session::get('perfil_id')); ?>
 
-               <?php if(!MOBILE) {?>
+                <?php if(!MOBILE) {?>
                 <?php View::partial('backend/main'); ?>
                 <?php } ?>
             </section>
         </aside>
         <div class="content-wrapper">
-                    <noscript><h5 style="text-align: center;">¡Tu navegador no soporta Javascript!.. Activa el uso de Javascript en tu navegador.</h5><meta http-equiv="refresh" content="1; URL=<?php echo PUBLIC_PATH; ?>sistema/login/salir/no-script/" /></noscript>
-                    <?php View::content(); ?>
+            <noscript><h5 style="text-align: center;">¡Tu navegador no soporta Javascript!.. Activa el uso de Javascript en tu navegador.</h5><meta http-equiv="refresh" content="1; URL=<?php echo PUBLIC_PATH; ?>sistema/login/salir/no-script/" /></noscript>
+            <?php View::content(); ?>
         </div>
         <footer class="main-footer">
             <?php View::partial('backend/footer'); ?>
@@ -83,19 +85,30 @@
         </aside>
         <div class="control-sidebar-bg"></div>
     </div>
-<?php echo Tag::js('bootstrap/bootstrap.min').PHP_EOL; ?>
-<?php echo Tag::js('admin/app.min').PHP_EOL; ?>
-<?php echo Tag::js('bootstrap/bootstrap-datepicker').PHP_EOL; ?>
-<?php echo Tag::js('utils/var').PHP_EOL; ?>
-<?php echo Tag::js('utils/validador').PHP_EOL; ?>
-
-<?php echo MkcDialog::alert('Se ha producido un error en la validación del formulario.', 'subtext: Verifica los datos e intenta nuevamente.', 'title: Formulario incorrecto', 'name: errorForm'); ?>
-<?php if(PRODUCTION) { ?>
-<?php echo MkcDialog::alert('Se ha generado la siguiente excepción: <br /><span id="mkc-error-ajax"></span>.', 'title: Oops! hemos realizado algo mal.', 'name: errorAjax'); ?>
-<?php } else { ?>
-<?php echo MkcDialog::alert('Se ha generado la siguiente excepción: <br /><span id="mkc-error-ajax"></span>.<br /><span id="mkc-info-error-ajax"></span>', 'title: Oops! hemos realizado algo mal.', 'name: errorAjax'); ?>
-<?php } ?>
-<?php echo MkcDialog::alert('Usted no posee los permisos necesarios para realizar esta acción.', 'title: Acceso denegado', 'name: accessControl'); ?>
+    <?php echo Tag::js('bootstrap/bootstrap.min').PHP_EOL; ?>
+    <?php echo Tag::js('admin/app.min').PHP_EOL; ?>
+    <?php echo Tag::js('admin/demo').PHP_EOL; ?>
+    <?php echo Tag::js('bootstrap/bootstrap-datepicker').PHP_EOL; ?>
+    <?php echo Tag::js('utils/var').PHP_EOL; ?>
+    <?php echo Tag::js('utils/validador').PHP_EOL; ?>
+    <script src="<?php echo PUBLIC_PATH; ?>plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH; ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="<?php echo PUBLIC_PATH; ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="<?php echo PUBLIC_PATH; ?>plugins/fastclick/fastclick.js"></script>
+    <script>
+        $(function () {
+                $("#table").DataTable();
+            });
+    </script>
+    <?php echo MkcDialog::alert('Se ha producido un error en la validación del formulario.', 'subtext: Verifica los datos e intenta nuevamente.', 'title: Formulario incorrecto', 'name: errorForm'); ?>
+    <?php if(PRODUCTION) { ?>
+    <?php echo MkcDialog::alert('Se ha generado la siguiente excepción: <br /><span id="mkc-error-ajax"></span>.', 'title: Oops! hemos realizado algo mal.', 'name: errorAjax'); ?>
+    <?php } else { ?>
+    <?php echo MkcDialog::alert('Se ha generado la siguiente excepción: <br /><span id="mkc-error-ajax"></span>.<br /><span id="mkc-info-error-ajax"></span>', 'title: Oops! hemos realizado algo mal.', 'name: errorAjax'); ?>
+    <?php } ?>
+    <?php echo MkcDialog::alert('Usted no posee los permisos necesarios para realizar esta acción.', 'title: Acceso denegado', 'name: accessControl'); ?>
 
 </body>
 </html>
