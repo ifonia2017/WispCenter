@@ -1,2 +1,2 @@
-<?php echo MkcMenu::desktop(); ?>
-<?php echo MkcMenu::getItems(); ?>
+<?php MkcMenu::load(Menu::BACKEND, Session::get('perfil_id')); ?>
+<?php echo MkcMenu::phone(); ?>

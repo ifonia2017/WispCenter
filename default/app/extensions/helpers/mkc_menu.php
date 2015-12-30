@@ -65,16 +65,16 @@ class MkcMenu {
             foreach(self::$_main as $main) {         
                 $active = ($main->url==$route) ? 'active' : null;
                 if(self::$_entorno==Menu::BACKEND) {
-                    $html.= '<li class="'.$active.'">'.MkcHtml::link($main->url, $main->menu, array('class'=>'header', 'data-filter'=>"sub-menu-".MkcUtils::getSlug($main->menu)), $main->icono).'</li>'.PHP_EOL;
+                    $html.= '<li class="'.$active.' treeview">'.MkcHtml::link($main->url, $main->menu, array('class'=>'header', 'data-filter'=>"sub-menu-".MkcUtils::getSlug($main->menu)), $main->icono).'</li>'.PHP_EOL;
                 } else {
                     if(!array_key_exists($main->menu, self::$_items)) {
                         $text = '<i class="fa fa-'.$main->icono.'"></i>'.$main->menu.PHP_EOL;
                         $html.= '<li class="treeview">';                        
                         $html.= MkcHtml::link('#', $text, array('class'=>'treeview-menu', 'data-toggle'=>'dropdown'), NULL, FALSE);
-                        $html.= '<ul class="dropdown-menu">';
+                        $html.= '<ul class="treview-menu dropdown-menu">';
                         foreach(self::$_items[$main->menu] as $item) {                        
                             $active = ($item->url==$route) ? 'active' : null;
-                            $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, APP_AJAX).'</li>'.PHP_EOL;
+                            $html.= '<li class="'.$active.' treview-menu">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, APP_AJAX).'</li>'.PHP_EOL;
                         }                        
                         $html.= '</ul>'.PHP_EOL;
                         $html.= '</li>'.PHP_EOL;
@@ -103,9 +103,9 @@ class MkcMenu {
                 } else {
                     if(!array_key_exists($main->menu, self::$_items)) {
                         $text = '<i class="fa fa-'.$main->icono.'"></i>'.$main->menu.PHP_EOL;
-                        $html.= '<li class="treeview">';                        
+                        $html.= '<li class="treeview dropdown">';                        
                         $html.= MkcHtml::link('#', $text, array('class'=>'treeview-menu', 'data-toggle'=>'dropdown'), NULL, FALSE);
-                        $html.= '<ul class="dropdown-menu">';
+                        $html.= '<ul class="treview-menu dropdown-menu">';
                         foreach(self::$_items[$main->menu] as $item) {                        
                             $active = ($item->url==$route) ? 'active' : null;
                             $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, APP_AJAX).'</li>'.PHP_EOL;
@@ -131,7 +131,7 @@ class MkcMenu {
         if(self::$_main) {
             $html.= '<ul class="sidebar-menu">';
             foreach(self::$_main as $main) {
-                $text = '<i class="fa fa-'.$main->icono.'"></i>'.$main->menu.PHP_EOL;
+                $text = '<i class="fa fa-'.$main->icono.' fa-lg"></i>&nbsp;&nbsp;'.$main->menu.'<i class="fa fa-angle-left pull-right"></i>'.PHP_EOL;
                 $html.= '<li class="treeview">';
                 $html.= MkcHtml::link('#', $text, array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'), NULL, FALSE);
                 if(array_key_exists($main->menu, self::$_items)) {
@@ -140,8 +140,9 @@ class MkcMenu {
                         if(!APP_OFFICE && $item->id == Menu::SUCURSAL) {
                             continue;
                         }
-                        $active = ($item->url==$route) ? 'active' : null;                        
-                        $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, TRUE).'</li>'.PHP_EOL;
+                        $active = ($item->url==$route) ? 'active' : null;
+                        $text2 = '<i class="fa fa-'.$item->icono.'"></i>'.$item->menu;
+                        $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $text2, NULL, NULL, TRUE).'</li>'.PHP_EOL;
                     }
                     $html.= '</ul>'.PHP_EOL;
                 }
@@ -161,7 +162,7 @@ class MkcMenu {
         $html = '';        
         foreach(self::$_items as $menu => $items) {
             $html.= '<div id="sub-menu-'.MkcUtils::getSlug($menu).'" class="subnav hidden">'.PHP_EOL;
-            $html.= '<ul class="nav nav-pills">'.PHP_EOL;
+            $html.= '<ul class="treview-menu nav nav-pills">'.PHP_EOL;
             if(array_key_exists($menu, self::$_items)) {
                 foreach(self::$_items[$menu] as $item) {
                     if(!APP_OFFICE && $item->id == Menu::SUCURSAL) {
@@ -170,9 +171,9 @@ class MkcMenu {
                     $active = ($item->url==$route or $item->url=='principal') ? 'active' : null;                    
                     $submenu = $item->getListadoSubmenuPorPerfil(self::$_entorno, self::$_perfil, $item->id);
                     if($submenu) {
-                        $html.= '<li class="'.$active.'dropdown">';
-                        $html.= MkcHtml::link($item->url, ' <b class="fa fa-'.$main->icono.'"></b>'.$item->menu, array('class'=>'dropdown-toggle', 'role'=>"button", "data-toggle"=>"dropdown"), $item->icono);                        
-                        $html.= '<ul class="dropdown-menu" role="menu">';
+                        $html.= '<li class="'.$active.'treview dropdown">';
+                        $html.= MkcHtml::link($item->url, ' <i class="fa fa-'.$main->icono.'"></i>'.$item->menu, array('class'=>'dropdown-toggle', 'role'=>"button", "data-toggle"=>"dropdown"), $item->icono);                        
+                        $html.= '<ul class="treview-menu dropdown-menu" role="menu">';
                         foreach($submenu as $tmp) {
                             $html.= '<li>'.MkcHtml::link($tmp->url, $tmp->menu, null, $tmp->icono).'</li>'.PHP_EOL;
                         }

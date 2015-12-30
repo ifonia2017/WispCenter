@@ -60,6 +60,7 @@ class Usuario extends ActiveRecord {
                         } 
                         Session::set('nombre', $usuario->nombre);
                         Session::set('apellido', $usuario->apellido);                        
+                        Session::set('fotografia', $usuario->fotografia);                        
                         Session::set("ip", MkcUtils::getIp());
                         Session::set('perfil', $usuario->perfil);
                         Session::set('tema', $usuario->tema);
@@ -88,7 +89,7 @@ class Usuario extends ActiveRecord {
      * @return object Usuario
      */
     public static function getUsuarioLogueado() {
-        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, estado_usuario.estado_usuario';
+        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, persona.fotografia, estado_usuario.estado_usuario';
         $join = "INNER JOIN persona ON persona.id = usuario.persona_id ";
         $join.= "INNER JOIN perfil ON perfil.id = usuario.perfil_id ";
         $join.= self::getInnerEstado();
@@ -106,7 +107,7 @@ class Usuario extends ActiveRecord {
         if(empty($perfil)) {
             return NULL;
         }
-        $columns = 'usuario.*, persona.nombre, persona.apellido, perfil.perfil, sucursal.sucursal';
+        $columns = 'usuario.*, persona.nombre, persona.apellido, persona.fotografia, perfil.perfil, sucursal.sucursal';
         $join = 'INNER JOIN persona ON persona.id = usuario.persona_id ';
         $join.= 'INNER JOIN perfil ON perfil.id = usuario.perfil_id ';
         $join.= 'LEFT JOIN sucursal ON sucursal.id = usuario.sucursal_id ';
@@ -128,6 +129,10 @@ class Usuario extends ActiveRecord {
             'email' => array(
                 'ASC'=>'usuario.email ASC, persona.apellido ASC, persona.nombre ASC', 
                 'DESC'=>'usuario.email DESC, persona.apellido DESC, persona.nombre DESC'
+            ),
+             'fotografia' => array(
+                'ASC'=>'persona.fotografia ASC, persona.apellido ASC, persona.nombre ASC', 
+                'DESC'=>'persona.fotografia DESC, persona.apellido DESC, persona.nombre DESC'
             ),
             'sucursal' => array(
                 'ASC'=>'sucursal.sucursal ASC, persona.apellido ASC, persona.nombre ASC', 
