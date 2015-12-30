@@ -61,23 +61,57 @@ class MkcMenu {
         $route = trim(Router::get('route'), '/');
         $html = '';
         if(self::$_main) {
-            $html.= '<ul class="nav">'.PHP_EOL;
+            $html.= '<ul class="sidebar-menu">'.PHP_EOL;
             foreach(self::$_main as $main) {         
                 $active = ($main->url==$route) ? 'active' : null;
                 if(self::$_entorno==Menu::BACKEND) {
-                    $html.= '<li class="'.$active.'">'.MkcHtml::link($main->url, $main->menu, array('class'=>'main-menu-link', 'data-filter'=>"sub-menu-".MkcUtils::getSlug($main->menu)), $main->icono).'</li>'.PHP_EOL;
+                    $html.= '<li class="'.$active.'">'.MkcHtml::link($main->url, $main->menu, array('class'=>'header', 'data-filter'=>"sub-menu-".MkcUtils::getSlug($main->menu)), $main->icono).'</li>'.PHP_EOL;
                 } else {
                     if(!array_key_exists($main->menu, self::$_items)) {
-                        $text = $main->menu.'<b class="caret"></b>';
-                        $html.= '<li class="dropdown">';                        
-                        $html.= MkcHtml::link('#', $text, array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'), NULL, FALSE);
+                        $text = '<i class="fa fa-'.$main->icono.'"></i>'.$main->menu.PHP_EOL;
+                        $html.= '<li class="treeview">';                        
+                        $html.= MkcHtml::link('#', $text, array('class'=>'treeview-menu', 'data-toggle'=>'dropdown'), NULL, FALSE);
                         $html.= '<ul class="dropdown-menu">';
                         foreach(self::$_items[$main->menu] as $item) {                        
                             $active = ($item->url==$route) ? 'active' : null;
-                            $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, APP_AJAX).'</li>';
+                            $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, APP_AJAX).'</li>'.PHP_EOL;
                         }                        
-                        $html.= '</ul>';
-                        $html.= '</li>';
+                        $html.= '</ul>'.PHP_EOL;
+                        $html.= '</li>'.PHP_EOL;
+                    } else {
+                        $html.= '<li class="'.$active.'">'.MkcHtml::link($main->url, $main->menu, NULL, $main->icono, APP_AJAX).'</li>'.PHP_EOL;
+                    }
+                }
+            }
+            $html.= '</ul>'.PHP_EOL;
+        }        
+        return $html;
+    }
+
+    /**
+     * Método para renderizar el menú de escritorio
+     */
+    public static function frontend() {
+        $route = trim(Router::get('route'), '/');
+        $html = '';
+        if(self::$_main) {
+            $html.= '<ul class="sidebar-menu">'.PHP_EOL;
+            foreach(self::$_main as $main) {         
+                $active = ($main->url==$route) ? 'active' : null;
+                if(self::$_entorno==Menu::FRONTEND) {
+                    $html.= '<li class="'.$active.'">'.MkcHtml::link($main->url, $main->menu, array('class'=>'header', 'data-filter'=>"sub-menu-".MkcUtils::getSlug($main->menu)), $main->icono).'</li>'.PHP_EOL;
+                } else {
+                    if(!array_key_exists($main->menu, self::$_items)) {
+                        $text = '<i class="fa fa-'.$main->icono.'"></i>'.$main->menu.PHP_EOL;
+                        $html.= '<li class="treeview">';                        
+                        $html.= MkcHtml::link('#', $text, array('class'=>'treeview-menu', 'data-toggle'=>'dropdown'), NULL, FALSE);
+                        $html.= '<ul class="dropdown-menu">';
+                        foreach(self::$_items[$main->menu] as $item) {                        
+                            $active = ($item->url==$route) ? 'active' : null;
+                            $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, APP_AJAX).'</li>'.PHP_EOL;
+                        }                        
+                        $html.= '</ul>'.PHP_EOL;
+                        $html.= '</li>'.PHP_EOL;
                     } else {
                         $html.= '<li class="'.$active.'">'.MkcHtml::link($main->url, $main->menu, NULL, $main->icono, APP_AJAX).'</li>'.PHP_EOL;
                     }
@@ -95,25 +129,25 @@ class MkcMenu {
         $route = trim(Router::get('route'), '/');
         $html = '';
         if(self::$_main) {
-            $html.= '<ul class="nav pull-right">';
+            $html.= '<ul class="sidebar-menu">';
             foreach(self::$_main as $main) {
-                $text = $main->menu.'<b class="caret"></b>';
-                $html.= '<li class="dropdown">';
+                $text = '<i class="fa fa-'.$main->icono.'"></i>'.$main->menu.PHP_EOL;
+                $html.= '<li class="treeview">';
                 $html.= MkcHtml::link('#', $text, array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'), NULL, FALSE);
                 if(array_key_exists($main->menu, self::$_items)) {
-                    $html.= '<ul class="dropdown-menu" style="position: relative;">';
+                    $html.= '<ul class="treeview-menu" style="position: relative;">';
                     foreach(self::$_items[$main->menu] as $item) { 
                         if(!APP_OFFICE && $item->id == Menu::SUCURSAL) {
                             continue;
                         }
                         $active = ($item->url==$route) ? 'active' : null;                        
-                        $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, TRUE).'</li>';
+                        $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, NULL, $item->icon, TRUE).'</li>'.PHP_EOL;
                     }
-                    $html.= '</ul>';
+                    $html.= '</ul>'.PHP_EOL;
                 }
                 $html.= '</li>'.PHP_EOL;
             }
-            $html.= '</ul>';
+            $html.= '</ul>'.PHP_EOL;
 
         }
         return $html;
@@ -137,13 +171,13 @@ class MkcMenu {
                     $submenu = $item->getListadoSubmenuPorPerfil(self::$_entorno, self::$_perfil, $item->id);
                     if($submenu) {
                         $html.= '<li class="'.$active.'dropdown">';
-                        $html.= MkcHtml::link($item->url, $item->menu.' <b class="caret"></b>', array('class'=>'dropdown-toggle', 'role'=>"button", "data-toggle"=>"dropdown"), $item->icono);                        
+                        $html.= MkcHtml::link($item->url, ' <b class="fa fa-'.$main->icono.'"></b>'.$item->menu, array('class'=>'dropdown-toggle', 'role'=>"button", "data-toggle"=>"dropdown"), $item->icono);                        
                         $html.= '<ul class="dropdown-menu" role="menu">';
                         foreach($submenu as $tmp) {
                             $html.= '<li>'.MkcHtml::link($tmp->url, $tmp->menu, null, $tmp->icono).'</li>'.PHP_EOL;
                         }
-                        $html.= '</ul>';
-                        $html.= '</li>';
+                        $html.= '</ul>'.PHP_EOL;
+                        $html.= '</li>'.PHP_EOL;
                     } else {
                         $html.= '<li class="'.$active.'">'.MkcHtml::link($item->url, $item->menu, null, $item->icono).'</li>'.PHP_EOL;
                     }                                        

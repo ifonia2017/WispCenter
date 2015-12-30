@@ -99,9 +99,9 @@ class BackendController extends Controller {
      */
     final protected function finalize() {
         if(defined('APP_CLIENT')) {
-            $this->page_title = trim($this->page_title).' | '.APP_CLIENT.' ‹ '.APP_NAME;
+            $this->page_title = APP_CLIENT.' | '.APP_NAME.' > '.trim($this->page_title);
         } else {
-            $this->page_title = trim($this->page_title).' ‹ '.APP_NAME;
+            $this->page_title = APP_NAME.' > '.trim($this->page_title);
         }
         //Se muestra la vista según el tipo de reporte
         if(Router::get('module') == 'reporte') {
