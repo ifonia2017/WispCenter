@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-12-2015 a las 02:43:16
+-- Tiempo de generación: 04-01-2016 a las 19:56:02
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.4.45
 
@@ -33,12 +33,84 @@ CREATE TABLE IF NOT EXISTS `acceso` (
   `registrado_at` datetime DEFAULT NULL COMMENT 'Fecha de registro del acceso',
   PRIMARY KEY (`id`),
   KEY `fk_acceso_usuario_idx` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabla que registra los accesos de los usuarios al sistema' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que registra los accesos de los usuarios al sistema' AUTO_INCREMENT=72 ;
 
 --
 -- Volcar la base de datos para la tabla `acceso`
 --
 
+INSERT INTO `acceso` (`id`, `usuario_id`, `tipo_acceso`, `ip`, `registrado_at`) VALUES
+(1, 2, 1, '127.0.0.1', '2015-12-27 19:30:35'),
+(2, 2, 2, '127.0.0.1', '2015-12-27 19:56:14'),
+(3, 2, 1, '127.0.0.1', '2015-12-28 15:31:38'),
+(4, 2, 2, '127.0.0.1', '2015-12-28 15:32:17'),
+(5, 2, 1, '127.0.0.1', '2015-12-28 18:15:46'),
+(6, 2, 1, '127.0.0.1', '2015-12-29 10:21:31'),
+(7, 2, 2, '127.0.0.1', '2015-12-29 11:17:23'),
+(8, 2, 1, '127.0.0.1', '2015-12-29 11:17:30'),
+(9, 2, 2, '127.0.0.1', '2015-12-29 13:14:07'),
+(10, 2, 1, '127.0.0.1', '2015-12-29 13:14:15'),
+(11, 2, 1, '127.0.0.1', '2015-12-29 13:32:06'),
+(12, 2, 2, '127.0.0.1', '2015-12-29 22:17:31'),
+(13, 2, 1, '127.0.0.1', '2015-12-29 22:17:39'),
+(14, 2, 2, '127.0.0.1', '2015-12-30 00:05:43'),
+(15, 2, 1, '127.0.0.1', '2015-12-30 00:05:51'),
+(16, 2, 2, '127.0.0.1', '2015-12-30 01:09:42'),
+(17, 2, 1, '127.0.0.1', '2015-12-30 01:09:49'),
+(18, 2, 1, '127.0.0.1', '2015-12-30 08:35:36'),
+(19, 2, 2, '127.0.0.1', '2015-12-30 09:49:29'),
+(20, 2, 1, '127.0.0.1', '2015-12-30 09:49:37'),
+(21, 2, 2, '127.0.0.1', '2015-12-31 01:46:33'),
+(22, 2, 1, '127.0.0.1', '2015-12-31 01:46:41'),
+(23, 2, 2, '127.0.0.1', '2015-12-31 01:55:18'),
+(24, 2, 1, '127.0.0.1', '2015-12-31 01:55:25'),
+(25, 2, 1, '127.0.0.1', '2015-12-31 12:20:56'),
+(26, 2, 2, '127.0.0.1', '2015-12-31 12:32:44'),
+(27, 2, 1, '127.0.0.1', '2015-12-31 12:32:51'),
+(28, 2, 2, '127.0.0.1', '2016-01-01 15:57:09'),
+(29, 2, 1, '127.0.0.1', '2016-01-01 15:57:17'),
+(30, 2, 2, '127.0.0.1', '2016-01-02 20:32:37'),
+(31, 2, 1, '127.0.0.1', '2016-01-02 20:32:48'),
+(32, 2, 1, '127.0.0.1', '2016-01-03 14:28:43'),
+(33, 2, 2, '127.0.0.1', '2016-01-03 14:37:26'),
+(34, 2, 1, '127.0.0.1', '2016-01-03 14:39:56'),
+(35, 2, 2, '127.0.0.1', '2016-01-03 14:54:55'),
+(36, 2, 1, '127.0.0.1', '2016-01-03 14:57:41'),
+(37, 2, 2, '127.0.0.1', '2016-01-03 20:15:14'),
+(38, 6, 1, '127.0.0.1', '2016-01-03 20:15:23'),
+(39, 6, 2, '127.0.0.1', '2016-01-03 20:17:29'),
+(40, 2, 1, '127.0.0.1', '2016-01-03 20:17:35'),
+(41, 2, 2, '127.0.0.1', '2016-01-03 20:18:20'),
+(42, 6, 1, '127.0.0.1', '2016-01-03 20:18:29'),
+(43, 6, 2, '127.0.0.1', '2016-01-03 20:18:49'),
+(44, 7, 1, '127.0.0.1', '2016-01-03 20:18:57'),
+(45, 7, 2, '127.0.0.1', '2016-01-03 20:19:05'),
+(46, 2, 1, '127.0.0.1', '2016-01-03 20:19:13'),
+(47, 2, 2, '127.0.0.1', '2016-01-03 20:21:38'),
+(48, 6, 1, '127.0.0.1', '2016-01-03 20:23:21'),
+(49, 6, 2, '127.0.0.1', '2016-01-03 20:37:42'),
+(50, 7, 1, '127.0.0.1', '2016-01-03 20:37:52'),
+(51, 7, 2, '127.0.0.1', '2016-01-03 20:38:06'),
+(52, 2, 1, '127.0.0.1', '2016-01-03 20:38:14'),
+(53, 2, 2, '127.0.0.1', '2016-01-03 20:45:08'),
+(54, 2, 1, '127.0.0.1', '2016-01-03 20:45:16'),
+(55, 2, 2, '127.0.0.1', '2016-01-03 20:45:22'),
+(56, 6, 1, '127.0.0.1', '2016-01-03 20:45:32'),
+(57, 6, 2, '127.0.0.1', '2016-01-03 20:47:15'),
+(58, 7, 1, '127.0.0.1', '2016-01-03 20:47:24'),
+(59, 7, 2, '127.0.0.1', '2016-01-03 20:47:35'),
+(60, 2, 1, '127.0.0.1', '2016-01-03 20:47:42'),
+(61, 2, 2, '127.0.0.1', '2016-01-03 20:49:16'),
+(62, 6, 1, '127.0.0.1', '2016-01-03 20:49:25'),
+(63, 6, 2, '127.0.0.1', '2016-01-03 20:49:32'),
+(64, 2, 1, '127.0.0.1', '2016-01-03 20:51:18'),
+(65, 2, 2, '127.0.0.1', '2016-01-03 20:54:38'),
+(66, 6, 1, '127.0.0.1', '2016-01-03 20:54:46'),
+(67, 6, 2, '127.0.0.1', '2016-01-03 20:54:52'),
+(68, 7, 1, '127.0.0.1', '2016-01-03 20:55:02'),
+(69, 7, 2, '127.0.0.1', '2016-01-03 20:55:10'),
+(70, 2, 1, '127.0.0.1', '2016-01-03 20:55:30'),
+(71, 2, 1, '127.0.0.1', '2016-01-04 14:31:45');
 
 -- --------------------------------------------------------
 
@@ -120,6 +192,9 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `nuip` bigint(20) NOT NULL COMMENT 'Número de identificación personal',
   `tipo_nuip_id` int(1) NOT NULL COMMENT 'Tipo de identificación',
   `pagina_web` varchar(45) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `telefono` varchar(25) DEFAULT NULL,
+  `fax` varchar(25) DEFAULT NULL,
   `logo` varchar(45) DEFAULT NULL,
   `registrado_at` varchar(45) DEFAULT NULL,
   `modificado_in` varchar(45) DEFAULT NULL,
@@ -131,8 +206,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 -- Volcar la base de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`id`, `razon_social`, `siglas`, `nit`, `dv`, `representante_legal`, `nuip`, `tipo_nuip_id`, `pagina_web`, `logo`, `registrado_at`, `modificado_in`) VALUES
-(1, 'Soluciones Sergio Lankaster Rondon', 'Solucones SL', '141544566', 6, 'Sergio Lankaster Rondón', 14154456, 4, 'http://www.solucionessl.com.ve', 'default.png', '2013-01-01 00:00:01', '2015-11-16 13:59:44');
+INSERT INTO `empresa` (`id`, `razon_social`, `siglas`, `nit`, `dv`, `representante_legal`, `nuip`, `tipo_nuip_id`, `pagina_web`, `email`, `telefono`, `fax`, `logo`, `registrado_at`, `modificado_in`) VALUES
+(1, 'Soluciones Sergio Lankaster Rondon', 'Soluciones SL', '141544566', 6, 'Sergio Lankaster Rondón', 14154456, 4, 'http://www.solucionessl.com.ve', 'admin@solucionessl.com.ve', '04241403604', '02392240878', 'fa421c887bb6512de1f866210aaab627.png', '2013-01-01 00:00:01', '2016-01-02 20:32:28');
 
 -- --------------------------------------------------------
 
@@ -148,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `estado_usuario` (
   `fecha_estado_at` datetime DEFAULT NULL COMMENT 'Fecha del cambio de estado',
   PRIMARY KEY (`id`),
   KEY `fk_estado_usuario_usuario_idx` (`usuario_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los estados de los usuarios' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los estados de los usuarios' AUTO_INCREMENT=5 ;
 
 --
 -- Volcar la base de datos para la tabla `estado_usuario`
@@ -156,7 +231,9 @@ CREATE TABLE IF NOT EXISTS `estado_usuario` (
 
 INSERT INTO `estado_usuario` (`id`, `usuario_id`, `estado_usuario`, `descripcion`, `fecha_estado_at`) VALUES
 (1, 1, 2, 'Bloqueado por ser un usuario sin privilegios', '2013-01-01 00:00:01'),
-(2, 2, 1, 'Activo por ser el Super Usuario del sistema', '2013-01-01 00:00:01');
+(2, 2, 1, 'Activo por ser el Super Usuario del sistema', '2013-01-01 00:00:01'),
+(3, 6, 1, 'Activado por registro inicial', '2016-01-03 20:13:20'),
+(4, 7, 1, 'Activado por registro inicial', '2016-01-03 20:15:02');
 
 -- --------------------------------------------------------
 
@@ -252,23 +329,23 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`id`, `menu_id`, `recurso_id`, `menu`, `url`, `posicion`, `icono`, `activo`, `visibilidad`) VALUES
-(1, NULL, NULL, 'Dashboard', '/dashboard', 10, 'icon-home', 1, 1),
-(3, NULL, NULL, 'Sistema', '#', 900, 'icon-cogs', 1, 1),
-(4, 3, 4, 'Accesos', 'sistema/acceso/listar/', 901, 'icon-exchange', 1, 1),
-(5, 3, 5, 'Auditorías', 'sistema/auditoria/', 902, 'icon-eye-open', 1, 1),
-(6, 3, 6, 'Backups', 'sistema/backup/listar/', 903, 'icon-hdd', 1, 1),
-(7, 3, 7, 'Mantenimiento', 'sistema/mantenimiento/', 904, 'icon-bolt', 1, 1),
-(8, 3, 8, 'Menús', 'sistema/menu/listar/', 905, 'icon-list', 1, 1),
-(9, 3, 9, 'Perfiles', 'sistema/perfil/listar/', 906, 'icon-group', 1, 1),
-(10, 3, 10, 'Permisos', 'sistema/privilegio/listar/', 907, 'icon-magic', 1, 1),
-(11, 3, 11, 'Recursos', 'sistema/recurso/listar/', 908, 'icon-lock', 1, 1),
-(12, 3, 12, 'Usuarios', 'sistema/usuario/listar/', 909, 'icon-user', 1, 1),
-(13, 3, 13, 'Visor de sucesos', 'sistema/sucesos/', 910, 'icon-filter', 1, 1),
-(14, 3, 14, 'Sistema', 'sistema/configuracion/', 911, 'icon-wrench', 1, 1),
-(15, NULL, NULL, 'Configuraciones', '#', 800, 'icon-wrench', 1, 1),
-(16, 15, 15, 'Empresa', 'config/empresa/', 801, 'icon-briefcase', 1, 1),
-(17, 15, 16, 'Sucursales', 'config/sucursal/listar/', 802, 'icon-sitemap', 1, 1),
-(18, NULL, NULL, 'Mikrotik', '#', 100, NULL, 1, 1),
+(1, 1, 2, 'Dashboard', '/dashboard', 10, 'home', 1, 1),
+(3, NULL, NULL, 'Sistema', '#', 900, 'cogs', 1, 1),
+(4, 3, 4, 'Accesos', 'sistema/acceso/listar/', 901, 'exchange', 1, 1),
+(5, 3, 5, 'Auditorías', 'sistema/auditoria/', 902, 'eye', 1, 1),
+(6, 3, 6, 'Backups', 'sistema/backup/listar/', 903, 'hdd-o', 1, 1),
+(7, 3, 7, 'Mantenimiento', 'sistema/mantenimiento/', 904, 'bolt', 1, 1),
+(8, 3, 8, 'Menús', 'sistema/menu/listar/', 905, 'list', 1, 1),
+(9, 3, 9, 'Perfiles', 'sistema/perfil/listar/', 906, 'group', 1, 1),
+(10, 3, 10, 'Permisos', 'sistema/privilegio/listar/', 907, 'magic', 1, 1),
+(11, 3, 11, 'Recursos', 'sistema/recurso/listar/', 908, 'lock', 1, 1),
+(12, 3, 12, 'Usuarios', 'sistema/usuario/listar/', 909, 'user', 1, 1),
+(13, 3, 13, 'Visor de sucesos', 'sistema/sucesos/', 910, 'filter', 1, 1),
+(14, 3, 14, 'Sistema', 'sistema/configuracion/', 911, 'wrench', 1, 1),
+(15, NULL, NULL, 'Configuraciones', '#', 800, 'wrench', 1, 1),
+(16, 15, 15, 'Empresa', 'config/empresa/', 801, 'building', 1, 1),
+(17, 15, 16, 'Sucursales', 'config/sucursal/listar/', 802, 'sitemap', 1, 1),
+(18, NULL, NULL, 'Mikrotik', '#', 100, 'wifi', 1, 1),
 (19, 18, 17, 'Usuarios', 'mikrotik/usuario/listar/', 100, 'users', 1, 1);
 
 -- --------------------------------------------------------
@@ -313,14 +390,16 @@ CREATE TABLE IF NOT EXISTS `perfil` (
   `plantilla` varchar(45) DEFAULT 'default' COMMENT 'Plantilla para usar en el sitema',
   `registrado_at` datetime DEFAULT NULL COMMENT 'Fecha de registro del perfil',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los grupos de los usuarios' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los grupos de los usuarios' AUTO_INCREMENT=4 ;
 
 --
 -- Volcar la base de datos para la tabla `perfil`
 --
 
 INSERT INTO `perfil` (`id`, `perfil`, `estado`, `plantilla`, `registrado_at`) VALUES
-(1, 'Super Usuario', 1, 'default', '2013-01-01 00:00:01');
+(1, 'Super Usuario', 1, 'default', '2013-01-01 00:00:01'),
+(2, 'Operador', 1, 'default', '2016-01-03 14:10:50'),
+(3, 'Cliente', 1, 'default', '2016-01-03 14:11:03');
 
 -- --------------------------------------------------------
 
@@ -332,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(100) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
+  `cargo` varchar(255) DEFAULT 'Cliente',
   `nuip` bigint(20) NOT NULL COMMENT 'Número de identificación personal',
   `tipo_nuip_id` int(11) NOT NULL COMMENT 'Tipo de identificación',
   `direccion` varchar(255) DEFAULT NULL,
@@ -343,15 +422,17 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `modificado_in` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_persona_tipo_nuip_idx` (`tipo_nuip_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene las personas que interactúan con el siste /* comment truncated */ /*ma*/' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene las personas que interactúan con el siste /* comment truncated */ /*ma*/' AUTO_INCREMENT=7 ;
 
 --
 -- Volcar la base de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`id`, `nombre`, `apellido`, `email`, `nuip`, `tipo_nuip_id`, `direccion`, `direccion1`, `telefono`, `fotografia`, `registrado_at`, `modificado_in`) VALUES
+INSERT INTO `persona` (`id`, `nombre`, `apellido`, `cargo`, `nuip`, `tipo_nuip_id`, `direccion`, `direccion1`, `telefono`, `fotografia`, `registrado_at`, `modificado_in`) VALUES
 (1, 'Error', 'Error', '', 1010101010, 1, NULL, NULL, NULL, 'default.png', '2013-01-01 00:00:01', NULL),
-(2, 'Sergio L.', 'Rondón M.', '', 14154456, 4, NULL, NULL, NULL, 'default.png', '2013-01-01 00:00:01', '2015-11-16 13:57:28');
+(2, 'Sergio L.', 'Rondón M.', 'CEO - Soluciones SL', 14154456, 4, NULL, NULL, NULL, '982149372826f44b530aeea8e4641bb6.png', '2013-01-01 00:00:01', '2015-12-31 12:32:12'),
+(5, 'Operador', 'Operador', 'Operador', 23, 1, NULL, NULL, NULL, 'default.png', '2016-01-03 20:13:20', NULL),
+(6, 'Cliente', 'Cliente', 'Cliente', 14, 1, NULL, NULL, NULL, 'default.png', '2016-01-03 20:15:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -401,7 +482,7 @@ CREATE TABLE IF NOT EXISTS `recurso` (
   `activo` int(1) NOT NULL DEFAULT '1' COMMENT 'Estado del recurso',
   `registrado_at` datetime DEFAULT NULL COMMENT 'Fecha de registro',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los recursos a los que acceden los usuari /* comment truncated */ /*os*/' AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los recursos a los que acceden los usuari /* comment truncated */ /*os*/' AUTO_INCREMENT=21 ;
 
 --
 -- Volcar la base de datos para la tabla `recurso`
@@ -424,7 +505,10 @@ INSERT INTO `recurso` (`id`, `modulo`, `controlador`, `accion`, `recurso`, `desc
 (14, 'sistema', 'configuracion', '*', 'sistema/configuracion/*', 'Submódulo para la configuración de la aplicación (.ini)', 1, '2013-01-01 00:00:01'),
 (15, 'config', 'empresa', '*', 'config/empresa/*', 'Submódulo para la configuración de la información de la empresa', 1, '2013-01-01 00:00:01'),
 (16, 'config', 'sucursal', '*', 'config/sucursal/*', 'Submódulo para la administración de las sucursales', 1, '2013-01-01 00:00:01'),
-(17, 'mikrotik', 'usuario', '*', 'mikrotik/usuario/*', 'Sistema de Gestion de Mikrotiks', 1, '2015-11-16 14:19:19');
+(17, 'mikrotik', 'usuario', '*', 'mikrotik/usuario/*', 'Sistema de Gestion de Mikrotiks', 1, '2015-11-16 14:19:19'),
+(18, 'dashboard', 'admin', '*', 'dashboard/admin/*', 'Dashboard de administracion del sistema', 1, '2016-01-03 20:20:35'),
+(19, 'dashboard', 'cliente', '*', 'dashboard/cliente/*', 'Dashboard del Cliente', 1, '2016-01-03 20:21:02'),
+(20, 'dashboard', 'operador', '*', 'dashboard/operador/*', 'Index del operador', 1, '2016-01-03 20:48:28');
 
 -- --------------------------------------------------------
 
@@ -441,14 +525,20 @@ CREATE TABLE IF NOT EXISTS `recurso_perfil` (
   PRIMARY KEY (`id`),
   KEY `fk_recurso_perfil_recurso_idx` (`recurso_id`),
   KEY `fk_recurso_perfil_perfil_idx` (`perfil_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los recursos del usuario en el sistema se /* comment truncated */ /*gun su perfl*/' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los recursos del usuario en el sistema se /* comment truncated */ /*gun su perfl*/' AUTO_INCREMENT=14 ;
 
 --
 -- Volcar la base de datos para la tabla `recurso_perfil`
 --
 
 INSERT INTO `recurso_perfil` (`id`, `recurso_id`, `perfil_id`, `registrado_at`, `modificado_in`) VALUES
-(1, 1, 1, '2013-01-01 00:00:01', NULL);
+(1, 1, 1, '2013-01-01 00:00:01', NULL),
+(2, 2, 3, '2016-01-03 20:18:12', NULL),
+(3, 2, 2, '2016-01-03 20:18:12', NULL),
+(10, 19, 3, '2016-01-03 20:49:10', NULL),
+(11, 20, 2, '2016-01-03 20:49:10', NULL),
+(12, 3, 3, '2016-01-03 20:49:10', NULL),
+(13, 3, 2, '2016-01-03 20:49:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -489,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   `empresa_id` int(11) NOT NULL COMMENT 'Identificador de la empresa',
   `sucursal` varchar(45) NOT NULL COMMENT 'Nombre de la sucursal',
   `sucursal_slug` varchar(45) DEFAULT NULL COMMENT 'Slug de la sucursal',
-  `direccion` varchar(45) DEFAULT NULL COMMENT 'Dirección de la sucursal',
+  `direccion` varchar(255) DEFAULT NULL COMMENT 'Dirección de la sucursal',
   `telefono` varchar(45) DEFAULT NULL COMMENT 'Número del teléfono',
   `fax` varchar(45) DEFAULT NULL COMMENT 'Número del fax',
   `celular` varchar(45) DEFAULT NULL COMMENT 'Número de celular',
@@ -506,7 +596,7 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
 --
 
 INSERT INTO `sucursal` (`id`, `empresa_id`, `sucursal`, `sucursal_slug`, `direccion`, `telefono`, `fax`, `celular`, `ciudad_id`, `registrado_at`, `modificado_in`) VALUES
-(1, 1, 'Oficina Principal', 'oficina-principal', 'Urb. Mata de Coco, Blq 27, Piso 4, Apto. 04-0', NULL, NULL, '04241403604', 1, '2013-01-01 00:00:01', '2015-11-16 14:01:06');
+(1, 1, 'Oficina Principal', 'oficina-principal', 'Urb. Mata de Coco, Blq 27, Piso 4, Apto. 04-06', NULL, NULL, '04241403604', 1, '2013-01-01 00:00:01', '2015-11-16 14:01:06');
 
 -- --------------------------------------------------------
 
@@ -543,6 +633,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `persona_id` int(11) NOT NULL COMMENT 'Identificador de la persona',
   `login` varchar(45) NOT NULL COMMENT 'Nombre de usuario',
   `password` varchar(45) NOT NULL COMMENT 'Contraseña de acceso al sistea',
+  `email` varchar(150) NOT NULL,
   `perfil_id` int(2) NOT NULL COMMENT 'Identificador del perfil',
   `nas_id` int(11) DEFAULT NULL,
   `tema` varchar(45) DEFAULT 'default' COMMENT 'Tema aplicable para la interfaz',
@@ -559,15 +650,17 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   KEY `fk_usuario_sucursal_idx` (`sucursal_id`),
   KEY `fk_usuario_nas_idx` (`nas_id`),
   KEY `fk_usuario_usuario_id_idx` (`usuario_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los usuarios' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla que contiene los usuarios' AUTO_INCREMENT=8 ;
 
 --
 -- Volcar la base de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `sucursal_id`, `persona_id`, `login`, `password`, `perfil_id`, `nas_id`, `tema`, `app_ajax`, `datagrid`, `usuario_id`, `registrado_at`, `modificado_in`, `estado`, `status`) VALUES
-(1, NULL, 1, 'error', '963db57a0088931e0e3627b1e73e6eb5', 1, NULL, 'default', 1, 30, NULL, '2013-01-01 00:00:01', NULL, 1, 1),
-(2, NULL, 2, 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 1, 'default', 1, 30, NULL, '2013-01-01 00:00:01', '2015-11-16 13:57:28', 1, 1);
+INSERT INTO `usuario` (`id`, `sucursal_id`, `persona_id`, `login`, `password`, `email`, `perfil_id`, `nas_id`, `tema`, `app_ajax`, `datagrid`, `usuario_id`, `registrado_at`, `modificado_in`, `estado`, `status`) VALUES
+(1, NULL, 1, 'error', '963db57a0088931e0e3627b1e73e6eb5', '', 1, NULL, 'default', 1, 30, NULL, '2013-01-01 00:00:01', NULL, 1, 1),
+(2, 1, 2, 'admin', 'd93a5def7511da3d0f2d171d9c344e91', 'sl.rondon.m@gmail.com', 1, 1, 'default', 1, 30, NULL, '2013-01-01 00:00:01', '2015-12-31 12:32:12', 1, 1),
+(6, 1, 5, 'operador', '735fe61e708ccb12f5f7729fb0062c31', 'operador@wispcenter.com.ve', 2, NULL, 'default', 1, 30, NULL, '2016-01-03 20:13:20', NULL, 1, 1),
+(7, 1, 6, 'cliente', '5565e320ef240838d26cfd4be6443f08', 'cliente@wispcenter.com.ve', 3, NULL, 'default', 1, 30, NULL, '2016-01-03 20:15:02', NULL, 1, 1);
 
 --
 -- Filtros para las tablas descargadas (dump)
