@@ -1,14 +1,26 @@
-<div class="page-header">
+
+<section class="content-header">
     <?php if(!empty($titulo)) { ?>
     <script type="text/javascript">
         MkcTitle('<?php echo $proceso; ?>');
     </script>
     <?php } ?>
-    <h4><?php echo ucfirst($modulo); ?>
+    <h1><?php echo ucfirst($modulo); ?>
     <?php
     if(isset($proceso) && $proceso!=null) {
         $proceso = explode(' |', $proceso);
-        echo " | <small>",ucfirst(trim($proceso[0])),"</small>";
+        echo " <small>",ucfirst(trim($proceso[0])),"</small>";
     } ?>
-    </h4>
-</div>
+    </h1>
+    <?php if(Config::get('config.application.breadcrumb')): ?>
+        <?php
+    Load::lib('breadcrumb');
+    $Crumb = new Breadcrumb();
+    $Crumb->addCrumb(0, ('Dashboard'), 'dashboard/');
+    $Crumb->addCrumb(1, Router::get('module'), Router::get('module').' ');
+    $Crumb->addCrumb(2, Router::get('controller'), Router::get('module').'/'.Router::get('controller').' ');
+    $Crumb->addCrumb(3, Router::get('action'), Router::get('module') .'/'.Router::get('controller') .'/'. Router::get('action').' ');
+    echo $Crumb->display();
+  ?>
+    <?php endif; ?>
+</section>

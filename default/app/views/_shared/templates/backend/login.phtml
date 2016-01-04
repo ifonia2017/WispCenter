@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title><?php echo $page_title; ?></title>
+    <title><?php echo APP_CLIENT. ' | '.APP_NAME.' > '.$page_module.' > '.$page_title; ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="<?php echo APP_CHARSET; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
     <div class="login-box">
         <div id="mkc-console"></div>
         <div class="login-logo">
-            <?php echo Html::link('dashboard/', 'WispCenter') ?>
+            <?php echo Html::link('dashboard/', 'Wisp<b>Center</b>') ?>
         </div>
         <div class="login-box-body">
             <?php echo View::content(); ?>

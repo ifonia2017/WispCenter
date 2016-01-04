@@ -90,7 +90,7 @@ class Usuario extends ActiveRecord {
      * @return object Usuario
      */
     public static function getUsuarioLogueado() {
-        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, persona.fotografia, persona.cargo, estado_usuario.estado_usuario';
+        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, persona.cargo, persona.fotografia, persona.cargo, estado_usuario.estado_usuario';
         $join = "INNER JOIN persona ON persona.id = usuario.persona_id ";
         $join.= "INNER JOIN perfil ON perfil.id = usuario.perfil_id ";
         $join.= self::getInnerEstado();
@@ -108,7 +108,7 @@ class Usuario extends ActiveRecord {
         if(empty($perfil)) {
             return NULL;
         }
-        $columns = 'usuario.*, persona.nombre, persona.apellido, persona.fotografia, perfil.perfil, sucursal.sucursal';
+        $columns = 'usuario.*, persona.nombre, persona.apellido, persona.fotografia, persona.cargo, perfil.perfil, sucursal.sucursal';
         $join = 'INNER JOIN persona ON persona.id = usuario.persona_id ';
         $join.= 'INNER JOIN perfil ON perfil.id = usuario.perfil_id ';
         $join.= 'LEFT JOIN sucursal ON sucursal.id = usuario.sucursal_id ';
@@ -378,7 +378,7 @@ class Usuario extends ActiveRecord {
         if(!$usuario) {
             return NULL;
         }
-        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, persona.nuip, persona.tipo_nuip_id, persona.fotografia, tipo_nuip.tipo_nuip, estado_usuario.estado_usuario, estado_usuario.descripcion, sucursal.sucursal';
+        $columnas = 'usuario.*, perfil.perfil, persona.nombre, persona.apellido, persona.cargo, persona.nuip, persona.tipo_nuip_id, persona.fotografia, tipo_nuip.tipo_nuip, estado_usuario.estado_usuario, estado_usuario.descripcion, sucursal.sucursal';
         $join = self::getInnerEstado();
         $join.= 'INNER JOIN perfil ON perfil.id = usuario.perfil_id ';
         $join.= 'INNER JOIN persona ON persona.id = usuario.persona_id ';        

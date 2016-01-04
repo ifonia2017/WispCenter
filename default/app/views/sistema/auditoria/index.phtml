@@ -1,26 +1,53 @@
-<?php View::notify(); ?>
+<link rel="stylesheet" href="<?php echo PUBLIC_PATH; ?>plugins/daterangepicker/daterangepicker-bs3.css">
+<?php View::process($page_module, $page_title, $set_title); ?>
 
-<div class="container-fluid mkc-shell-view">
+<section class="content">
+    <div class="mkc-shell-view">
+        <?php View::notify(); ?>
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title col-xs-6">
+                    <?php echo $page_title; ?>
+                </h3>
+            </div>
+    <div class="box-body">
+    <?php echo MkcForm::open('', 'post', array('id'=>'form', 'class'=>'form-control mkc-validate')); ?>
 
-    <?php View::process($page_module, $page_title, $set_title); ?>
-
-    <?php echo MkcForm::open('', 'post', array('id'=>'form', 'class'=>'mkc-validate')); ?>
-
-        <div class="row-fluid">
-            <div class="span6">
-                <?php echo MkcForm::date('audit', array('class'=>'input-required mask-date input-date show-errors'), date("Y-m-d"), 'Día'); ?>
+        <div class="col-md-6 form-group">
+            <label>Seleccione la Fecha:*</label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                <input type="text" class="form-control pull-right" id="audit" name="audit" data-inputmask="'alias': 'Y-m-d'" data-mask>
             </div>
         </div>
+        </div>
+        <div class="box-footer">
+            <div class="row form-group">
 
-        <div class="row-fluid">
-            <div class="form-actions">
-                <?php echo MkcButton::submit('Listar auditorías', 'check', NULL, 'mostrar'); ?>
-                <?php echo MkcButton::cancel(); ?>
+                <div class="col-xs-12 form-actions text-right">
+                    <?php echo MkcButton::submit('Listar auditorías', 'check', NULL, 'mostrar'); ?>
+                    <?php echo MkcButton::cancel(); ?>
+                </div>
             </div>
         </div>
-
 
     <?php echo MkcForm::close(); ?>
 
-
 </div>
+</div>
+</section>
+<!-- JS date-range-picker -->
+<script src="<?php echo PUBLIC_PATH; ?>plugins/daterangepicker/moment.min.js"></script>
+<script src="<?php echo PUBLIC_PATH; ?>plugins/daterangepicker/daterangepicker.js"></script>
+<script>
+  $(function () {
+        //Date range picker
+        $('#audit').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'Y-m-d'
+            }
+        });
+    });
+</script>

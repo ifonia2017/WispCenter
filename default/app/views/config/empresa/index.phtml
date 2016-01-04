@@ -1,14 +1,22 @@
-<?php View::notify(); ?>
+<section class="content-header">
+ <?php View::process($page_module, $page_title, $set_title); ?>
+ </section>
+
 <style type="text/css">
     .tab-pane { min-height: 200px;}
 </style>
 
-<div class="container-fluid mkc-shell-view">
+<section class="content mkc-shell-view">
+   
+<?php View::notify(); ?>
 
-    <?php View::process($page_module, $page_title, $set_title); ?>
-
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Informaci&oacute;n de la Empresa</h3>
+    </div>
     <?php echo MkcForm::openMultipart('', array('class'=>'mkc-validate')); ?>
-
+    <div class="box-body">
+<div class="nav-tabs-custom">
         <?php if(DESKTOP) { ?>
         <ul class="nav nav-tabs">
         <?php } else { ?>
@@ -24,54 +32,54 @@
 
             <div class="tab-pane active" id="tab1">
 
-                <div class="row-fluid">
+                <div class="row form-group">
                     <div class="col-xs-6">
-                        <?php echo MkcForm::text('empresa.razon_social', array('class'=>'input-xxlarge input-required mask-alphanum show-error'), NULL, 'Nombre o razón social'); ?>
+                        <?php echo MkcForm::text('empresa.razon_social', array('class'=>'form-control input-xxlarge input-required mask-alphanum show-error'), NULL, 'Nombre o razón social'); ?>
                     </div>
                     <div class="col-xs-6">
-                        <?php echo MkcForm::text('empresa.siglas', array('class'=>'input-xxlarge input-required mask-alphanum show-error'), NULL, 'Siglas o abrevación'); ?>
-                    </div>
-                </div>
-
-                <div class="row-fluid">
-                    <div class="col-xs-6">
-                        <?php echo MkcForm::text('empresa.nit', array('class'=>'input-xxlarge input-required mask-pint show-error'), NULL, 'Nit'); ?>
-                    </div>
-                    <div class="col-xs-6">
-                        <?php echo MkcForm::number('empresa.dv', array('class'=>'input-small input-required mask-pint show-error'), NULL, 'Dígito de verificación'); ?>
+                        <?php echo MkcForm::text('empresa.siglas', array('class'=>'form-control input-xxlarge input-required mask-alphanum show-error'), NULL, 'Siglas o abrevación'); ?>
                     </div>
                 </div>
 
-                <div class="row-fluid">
+                <div class="row form-group">
+                    <div class="col-xs-6">
+                        <?php echo MkcForm::text('empresa.nit', array('class'=>'form-control input-xxlarge input-required mask-pint show-error'), NULL, 'Nit'); ?>
+                    </div>
+                    <div class="col-xs-6">
+                        <?php echo MkcForm::number('empresa.dv', array('class'=>'form-control input-small input-required mask-pint show-error'), NULL, 'Dígito de verificación'); ?>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-xs-12">
-                        <?php echo MkcForm::text('empresa.representante_legal', array('class'=>'input-xxlarge input-required mask-alphanum show-error'), NULL, 'Representante legal'); ?>
+                        <?php echo MkcForm::text('empresa.representante_legal', array('class'=>'form-control input-xxlarge input-required mask-alphanum show-error'), NULL, 'Representante legal'); ?>
                     </div>
                 </div>
 
-                <div class="row-fluid">
+                <div class="row">
                     <div class="col-xs-6">
-                        <?php echo MkcForm::number('empresa.nuip', array('class'=>'input-xxlarge input-required mask-pint show-error'), NULL, 'Nuip'); ?>
+                        <?php echo MkcForm::number('empresa.nuip', array('class'=>'form-control input-xxlarge input-required mask-pint show-error'), NULL, 'Nuip'); ?>
                     </div>
                     <div class="col-xs-6">
-                        <?php echo MkcForm::dbSelect('empresa.tipo_nuip_id', 'tipo_nuip', array('params/tipo_nuip', 'getListadoTipoNuip'), NULL, array('class'=>'input-xxlarge input-required mask-pint show-errors'), NULL, 'Tipo de identificación'); ?>
+                        <?php echo MkcForm::dbSelect('empresa.tipo_nuip_id', 'tipo_nuip', array('params/tipo_nuip', 'getListadoTipoNuip'), NULL, array('class'=>'form-control input-xxlarge input-required mask-pint show-errors'), NULL, 'Tipo de identificación'); ?>
                     </div>
                 </div>
 
-                <div class="row-fluid">
+                <div class="row">
                     <div class="col-xs-6">
-                        <?php echo MkcForm::url('empresa.pagina_web', array('class'=>'input-xxlarge show-error'), NULL, 'Página web'); ?>
+                        <?php echo MkcForm::url('empresa.pagina_web', array('class'=>'form-control input-xxlarge show-error'), NULL, 'Página web'); ?>
                     </div>
                     <div class="col-xs-6">
-                        <?php echo MkcForm::email('empresa.email', array('class'=>'input-xxlarge mask-email show-error'), NULL, 'Email'); ?>
+                        <?php echo MkcForm::email('empresa.email', array('class'=>'form-control input-xxlarge mask-email show-error'), NULL, 'Email'); ?>
                     </div>
                 </div>
                 <?php if(APP_OFFICE) { ?>
-                <div class="row-fluid">
+                <div class="row">
                     <div class="col-xs-6">
-                        <?php echo MkcForm::tel('empresa.telefono', array('class'=>'input-xxlarge mask-pint show-error'), NULL, 'Teléfono'); ?>
+                        <?php echo MkcForm::tel('empresa.telefono', array('class'=>'form-control input-xxlarge mask-pint show-error'), NULL, 'Teléfono'); ?>
                     </div>
                     <div class="col-xs-6">
-                        <?php echo MkcForm::tel('empresa.fax', array('class'=>'input-xxlarge show-error'), NULL, 'Fax'); ?>
+                        <?php echo MkcForm::tel('empresa.fax', array('class'=>'form-control input-xxlarge show-error'), NULL, 'Fax'); ?>
                     </div>
                 </div>
                 <?php } ?>
@@ -80,23 +88,23 @@
 
             <?php if(!APP_OFFICE) { ?>
             <div class="tab-pane" id="tab2">
-                <div class="row-fluid">
+                <div class="row">
                     <div class="col-xs-6">
-                        <?php echo MkcForm::text('sucursal.direccion', array('class'=>'input-xxlarge input-required input-alphanum mask-alphanum show-error'), NULL, 'Dirección'); ?>
+                        <?php echo MkcForm::text('sucursal.direccion', array('class'=>'form-control input-xxlarge input-required input-alphanum mask-alphanum show-error'), NULL, 'Dirección'); ?>
                     </div>
                     <div class="col-xs-6">
-                        <?php echo MkcForm::text('ciudad', array('class'=>'input-xxlarge input-required input-alphanum mask-alphanum show-error', 'autocomplete'=>'off'), empty($sucursal->ciudad) ? NULL : $sucursal->ciudad, 'Ciudad'); ?>
+                        <?php echo MkcForm::text('ciudad', array('class'=>'form-control input-xxlarge input-required input-alphanum mask-alphanum show-error', 'autocomplete'=>'off'), empty($sucursal->ciudad) ? NULL : $sucursal->ciudad, 'Ciudad'); ?>
                     </div>
                 </div>
-                <div class="row-fluid">
+                <div class="row">
                     <div class="col-xs-6">
-                        <?php echo MkcForm::tel('sucursal.celular', array('class'=>'input-numeric mask-pint show-error'), NULL, 'Celular'); ?>
+                        <?php echo MkcForm::tel('sucursal.celular', array('class'=>'form-control input-numeric mask-pint show-error'), NULL, 'Celular'); ?>
                     </div>
                     <div class="col-xs-6">
-                        <?php echo MkcForm::tel('sucursal.telefono', array('class'=>'input-numeric mask-pint show-error'), NULL, 'Teléfono'); ?>
+                        <?php echo MkcForm::tel('sucursal.telefono', array('class'=>'form-control input-numeric mask-pint show-error'), NULL, 'Teléfono'); ?>
                     </div>
                     <div class="col-xs-4">
-                        <?php echo MkcForm::tel('sucursal.fax', array('class'=>'input-numeric mask-pint show-error'), NULL, 'Fax'); ?>
+                        <?php echo MkcForm::tel('sucursal.fax', array('class'=>'form-control input-numeric mask-pint show-error'), NULL, 'Fax'); ?>
                     </div>
                     <?php if(!empty($sucursal->id)) { ?>
                     <?php echo MkcForm::hidden('sucursal.id', NULL, $sucursal->id); ?>
@@ -111,20 +119,20 @@
 
                     <div class="col-xs-2">
                         <span class="btn btn-success fileinput-button">
-                            <i class="icon-plus icon-white"></i>
+                            <i class="fa fa-plus fa-lg"></i>
                             <span>Cargar logo...</span>
                             <input id="logo" type="file" name="logo">
                         </span>
                     </div>
 
-                    <div id="upload-progress" class="span4 fileupload-progress fade">
+                    <div id="upload-progress" class="col-xs-4 fileupload-progress fade">
                         <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                             <div class="bar" style="width:0%;"></div>
                         </div>
                     </div>
 
-                    <div class="col-xs-5 mkc-text-right">
-                        <div class="span5 mkc-picture-profile mkc-text-center mkc-text-middle mkc-shadow-dark" style="margin-top: 5px">
+                    <div class="col-xs-5 text-right">
+                        <div class="col-xs-5 mkc-picture-profile text-center text-middle shadow-dark" style="margin-top: 5px">
                             <?php echo MkcHtml::img('upload/empresa/'.$empresa->logo, $empresa->razon_social, array('id'=>'img-empresa')); ?>
                         </div>
                     </div>
@@ -132,23 +140,27 @@
                 </div>
 
             </div>
-
-            <div class="row-fluid">
+</div>
+<div class="box-footer">
+            <div class="row">
 
                 <?php echo MkcForm::hiddenKey('empresa.id', $empresa->id); ?>
                 <?php echo MkcForm::hidden('empresa.logo', NULL, $empresa->logo); ?>
 
-                <div class="form-actions">
+                <div class="col-xs-offset-6 col-xs-6 form-group form-actions text-right">
                     <?php echo MkcButton::save('Guardar información'); ?>
                     <?php echo MkcButton::reset('form'); ?>
                     <?php echo MkcButton::cancel(); ?>
                 </div>
             </div>
 
-        </div>
-
+</div>
+</div>
     <?php echo MkcForm::close(); ?>
 
+</div>
+</ul>
+</div>
 </div>
 
 <?php View::partial('jquery.file-upload'); ?>

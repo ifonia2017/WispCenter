@@ -19,6 +19,16 @@ class Perfil extends ActiveRecord {
     const SUPER_USUARIO = 1;
     
     /**
+     * Constante para definir el perfil de Operador
+     */
+    const OPERADOR = 2;
+    
+    /**
+     * Constante para definir el perfil de Cliente
+     */
+    const CLIENTE = 3;
+    
+    /**
      * Constante para definir un perfil como activo
      */
     const ACTIVO = 1;
@@ -55,7 +65,7 @@ class Perfil extends ActiveRecord {
         } else {
             $conditions.= " AND perfil.id > 1";            
             if($estado!='todos') {
-                $conditions.= ($estado==self::ACTIVO) ? " AND estado=".self::ACTIVO : " AND estado=".self::INACTIVO;                
+                $conditions.= ($estado==self::ACTIVO) ? " AND perfil.estado=".self::ACTIVO : " AND estado=".self::INACTIVO;                
             }
         }        
         $order = $this->get_order($order, 'perfil', array(            
@@ -125,7 +135,7 @@ class Perfil extends ActiveRecord {
         $path = APP_PATH.'views/_shared/templates/backend/'.$this->plantilla.'.phtml';
         //Verifico si se encuentra el template
         if(!is_file($path)) {
-            MkcMessage::error('Lo sentimos, pero no hemos podidio ubicar la plantilla '.$this->plantilla); 
+            DMkcMessage::error('Lo sentimos, pero no hemos podidio ubicar la plantilla '.$this->plantilla); 
             return 'cancel';
         }
     }
@@ -157,4 +167,3 @@ class Perfil extends ActiveRecord {
     }
     
 }
-?>

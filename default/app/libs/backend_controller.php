@@ -98,11 +98,11 @@ class BackendController extends Controller {
      * Callback que se ejecuta después de los métodos de todos los controladores
      */
     final protected function finalize() {
-        if(defined('APP_CLIENT')) {
-            $this->page_title = APP_CLIENT.' | '.APP_NAME.' > '.trim($this->page_title);
-        } else {
-            $this->page_title = APP_NAME.' > '.trim($this->page_title);
-        }
+        // if(defined('APP_CLIENT')) {
+        //     $this->page_title = APP_CLIENT.' | '.APP_NAME.' > '.trim($this->page_title);
+        // } else {
+        //     $this->page_title = APP_NAME.' > '.trim($this->page_title);
+        // }
         //Se muestra la vista según el tipo de reporte
         if(Router::get('module') == 'reporte') {
             View::report($this->page_format);

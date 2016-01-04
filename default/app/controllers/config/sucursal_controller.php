@@ -37,7 +37,7 @@ class SucursalController extends BackendController {
         $sucursal = new Sucursal();        
         $this->sucursales = $sucursal->getListadoSucursal($order, $page);
         $this->order = $order;        
-        $this->page_title = 'Listado de sucursales';
+        $this->page_title = 'Listado de Sucursales';
     }
     
     /**
@@ -52,7 +52,7 @@ class SucursalController extends BackendController {
             }            
         } 
         $this->ciudades = Load::model('params/ciudad')->getCiudadesToJson();
-        $this->page_title = 'Agregar sucursal';
+        $this->page_title = 'Agregar Sucursal';
     }
     
     /**
@@ -77,7 +77,7 @@ class SucursalController extends BackendController {
         } 
         $this->ciudades = Load::model('params/ciudad')->getCiudadesToJson();
         $this->sucursal = $sucursal;
-        $this->page_title = 'Actualizar sucursal';        
+        $this->page_title = 'Actualizar Sucursal';        
     }
     
     /**

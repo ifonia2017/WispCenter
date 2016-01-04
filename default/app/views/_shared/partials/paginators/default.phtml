@@ -32,12 +32,12 @@ if(!isset($url)) {
     </div>
     <div class="col-md-9 pagination">
         <div class="pagination-centered">
-            <ul>
+            <ul class="pagination">
                 <?php
                 if(isset($page->items)) {
 
                     if($page->prev) {
-                        echo "<li>".MkcHtml::link($url."/pag.$page->prev/", "« ", array('title'=>'Página anterior'))."</li>";
+                        echo "<li>".MkcHtml::link($url."/pag.$page->prev/", '<span aria-hidden="true">&laquo;</span>', array('title'=>'Página anterior', 'class'=>'nextprev', 'rel'=>'prev', 'aria-label'=>'Previous'))."</li>";
                     }
 
                     for($i = $page->current - 4; $i <= $page->current + 4; $i++) {
@@ -55,7 +55,7 @@ if(!isset($url)) {
                     }
 
                     if($page->next) {
-                        echo "<li>".MkcHtml::link($url."/pag.$page->next/", "»", array('title'=>'Página siguiente'))."</li>";
+                        echo "<li>".MkcHtml::link($url."/pag.$page->next/", '<span aria-hidden="true">&raquo;</span>', array('title'=>'Página siguiente', 'class'=>'nextprev', 'rel'=>'next', 'aria-label'=>'Next'))."</li>";
                     }
                 }
                 ?>

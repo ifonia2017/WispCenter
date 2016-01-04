@@ -48,7 +48,7 @@ class AuditoriaController extends BackendController {
         $audits = Sistema::getAudit($fecha, $page);
         $this->audits = $audits;
         $this->fecha = $fecha;
-        $this->page_module = 'Auditorías del sistema '.$fecha;
+        $this->page_title = 'Auditorías del sistema '.$fecha;
         
     }
         
