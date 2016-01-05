@@ -18,7 +18,6 @@
                         <thead>
                             <tr>
                                 <th class="col-collapse">NUM</th>
-                                <th class="col-collapse">POSICION</th>
                                 <th class="col-collapse">PADRE</th>
                                 <th class="col-collapse">TITULO</th>
                                 <th class="col-collapse">RECURSO</th>
@@ -40,12 +39,11 @@
                                     <?php $key_del = MkcSecurity::getKey($menu->id, 'eliminar_menu'); ?>
                                     <tr>
                                         <td><?php echo $menus->counter; ?></td>
-                                        <td><?php echo $menu->posicion; ?></td>
                                         <td><?php echo $menu->padre; ?></td>
                                         <td><?php echo $menu->menu; ?></td>
                                         <td><?php echo $menu->recurso; ?></td>
                                         <td><?php echo $menu->url; ?></td>
-                                        <td><?php echo $menu->icono; ?></td>
+                                        <td><?php echo '<i class="fa fa-'.$menu->icono.'"></i>'; ?></td>
                                         <td><?php echo ($menu->visibilidad == Menu::BACKEND) ? '<span class="label label-success">Backend</span>' : '<span class="label label-warning">Frontend</span>'; ; ?></td>
                                         <td><?php echo ($menu->activo == Menu::ACTIVO) ? '<span class="label label-success">Activo</span>' : '<span class="label label-important">Bloqueado</span>'; ; ?></td>
                                         <td>

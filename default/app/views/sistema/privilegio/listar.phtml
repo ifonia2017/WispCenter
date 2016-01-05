@@ -1,72 +1,65 @@
-<?php View::notify(); ?>
-
+<?php View::process($page_module, $page_title, $set_title); ?>
 <?php $old_privilegios = array(); ?>
-
-<script type="text/javascript">
-    $(function() {
-        $('table').mkcGrid({
-            order_attr: '<?php echo (APP_AJAX) ? 'class="mkc-ajax mkc-spinner"' : ''; ?>',
-            order_action: $.KumbiaPHP.publicPath+"sistema/privilegio/listar/"
-        });
-    });
-</script>
-
-<div class="container-fluid mkc-shell-view">
-
-    <?php View::process($page_module, $page_title, $set_title); ?>
-
-    <?php echo MkcForm::open('', 'post', array('id'=>'form', 'class'=>'mkc-validate')); ?>
-
-        <div class="mkc-overflow">
-
-            <table class="table table-bordered table-hover table-striped table-condensed">
-                <thead>
-                    <tr>
-                        <th rowspan="2" class="no-responsive mkc-text-middle">RECURSO</th>
-                        <th rowspan="2" class="no-responsive col-collapse mkc-text-middle">DESCRIPCION</th>
-                        <th colspan="<?php echo count($perfiles); ?>"class="no-responsive mkc-text-center">PERFILES</th>
-                    </tr>
-                    <tr>
-                        <?php foreach($perfiles as $perfil) { ?>
-                        <th class="no-responsive mkc-text-center"><?php echo $perfil->perfil; ?></th>
-                        <?php } ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($recursos->items as $recurso) : ?>
-                    <tr>
-                        <td><?php echo $recurso->recurso; ?></td>
-                        <td><?php echo $recurso->descripcion; ?></td>
-                        <?php foreach ($perfiles as $perfil) : ?>
-                            <?php if (in_array("$recurso->id-$perfil->id", $privilegios)) { ?>
-                                <td>
-                                    <?php $old_privilegios[] = $recurso->id.'-'.$perfil->id ?>
-                                    <?php echo MkcForm::check('privilegios[]', $recurso->id.'-'.$perfil->id, NULL, TRUE); ?>
-                                </td>
-                            <?php } else { ?>
-                                <td>
-                                    <?php echo MkcForm::check('privilegios[]', $recurso->id.'-'.$perfil->id); ?>
-                                </td>
-                            <?php } ?>
-                        <?php endforeach ?>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <?php echo MkcForm::hidden('old_privilegios', null, join(',', $old_privilegios)); ?>
-        <div class="row-fluid">
-            <div class="form-actions">
-                <?php echo MkcButton::save('Guardar privilegios'); ?>
-                <?php echo MkcButton::cancel('sistema/privilegio/listar'); ?>
+<section class="content">
+    <div class="mkc-shell-view">
+        <?php View::notify(); ?>
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title col-md-6">
+                    <?php echo $page_title; ?>
+                </h3>
             </div>
+            <?php echo MkcForm::open('', 'post', array('id'=>'form', 'class'=>'mkc-validate')); ?>
+            <div class="box-body">
+                    <div class="mkc-overflow">
+                        <table class="table table-bordered table-hover table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" class="no-responsive text-middle">RECURSO</th>
+                                    <th rowspan="2" class="no-responsive col-collapse text-middle">DESCRIPCION</th>
+                                    <th colspan="<?php echo count($perfiles); ?>"class="no-responsive text-center">PERFILES</th>
+                                </tr>
+                                <tr>
+                                    <?php foreach($perfiles as $perfil) { ?>
+                                    <th class="no-responsive text-center"><?php echo $perfil->perfil; ?></th>
+                                    <?php } ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($recursos->items as $recurso) : ?>
+                                    <tr>
+                                        <td><?php echo $recurso->recurso; ?></td>
+                                        <td><?php echo $recurso->descripcion; ?></td>
+                                        <?php foreach ($perfiles as $perfil) : ?>
+                                            <?php if (in_array("$recurso->id-$perfil->id", $privilegios)) {  ?>
+                                            <td>
+                                                <?php $old_privilegios[] = $recurso->id.'-'.$perfil->id ?>
+                                                <?php echo MkcForm::check('privilegios[]', $recurso->id.'-'.$perfil->id, NULL, TRUE); ?>
+                                            </td>
+                                            <?php } else { ?>
+                                            <td>
+                                                <?php echo MkcForm::check('privilegios[]', $recurso->id.'-'.$perfil->id); ?>
+                                            </td>
+                                            <?php } ?>
+                                        <?php endforeach ?>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div> 
+                    </div>
+                    <?php echo MkcForm::hidden('old_privilegios', null, join(',', $old_privilegios)); ?>
+               
+                <div class="box-footer">
+                    <div class="row form-group">
+                        <div class="col-md-12 form-group form-actions text-right">
+                            <?php echo MkcButton::save('Guardar privilegios'); ?>
+                            <?php echo MkcButton::cancel('sistema/privilegio/listar'); ?>
+                        </div>
+                    </div>
+                </div>
+                <?php MkcForm::close() ;?>
+                <?php View::partial('paginators/default', false, array('page'=>$recursos, 'url'=>"sistema/privilegio/listar/$order/")); ?>
         </div>
-
-    <?php MkcForm::close() ;?>
-
-    <?php View::partial('paginators/default', false, array('page'=>$recursos, 'url'=>"sistema/privilegio/listar/$order/")); ?>
-
-</div>
+    </div>
+</section>

@@ -46,7 +46,7 @@
                         <td><?php echo empty($recurso->controlador) ? '' : $recurso->controlador; ?></td>
                         <td><?php echo empty($recurso->accion) ? '' : $recurso->accion; ?></td>
                         <td><?php echo $recurso->descripcion; ?></td>
-                        <td><?php echo ($recurso->activo == Recurso::ACTIVO) ? '<span class="label label-success">Activo</span>' : '<span class="label label-important">Bloqueado</span>'; ; ?></td>
+                        <td><?php echo ($recurso->activo == Recurso::ACTIVO) ? '<span class="label label-success">Activo</span>' : '<span class="label label-warning">Bloqueado</span>'; ; ?></td>
                         <td>
                             <?php echo MkcHtml::buttonTable('Modificar recurso', "sistema/recurso/editar/$key_upd/", null, 'info', 'edit'); ?>
                             <?php if($recurso->activo == Recurso::ACTIVO) { ?>
@@ -54,7 +54,7 @@
                             <?php } else { ?>
                                 <?php echo MkcHtml::buttonTable('Reactivar recurso', "sistema/recurso/estado/reactivar/$key_rea/", null, 'danger', 'flag'); ?>
                             <?php } ?>
-                            <?php echo MkcHtml::buttonTable('Eliminar recurso', "sistema/recurso/eliminar/$key_del/", array('class'=>'js-confirm', 'confirm-title'=>'Eliminar recurso', 'confirm-body'=>'Está seguro de eliminar este recurso? <br />Recuerda que esta operación no se puede reversar.'), 'danger', 'ban-circle'); ?>
+                            <?php echo MkcHtml::buttonTable('Eliminar recurso', "sistema/recurso/eliminar/$key_del/", array('class'=>'js-confirm', 'confirm-title'=>'Eliminar recurso', 'confirm-body'=>'Está seguro de eliminar este recurso? <br />Recuerda que esta operación no se puede reversar.'), 'danger', 'trash'); ?>
                         </td>
                     </tr>
                     <?php $recursos->counter++; ?>

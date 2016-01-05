@@ -7,7 +7,6 @@
         <div class="box-header with-border">
             <h3 class="box-title"><?php echo $page_title; ?></h3>
         </div>
-       
         <?php echo MkcForm::open('', 'post', array('id'=>'form', 'class'=>'mkc-validate')); ?>
         <div class="box-body">
             <div class="row form-group">
@@ -38,7 +37,7 @@
         <?php echo MkcForm::hiddenKey('sucursal.id', $sucursal->id); ?>
         <div class="box-footer">
             <div class="row form-group">
-                <div class="col-xs-12 form-group form-actions text-right">
+                <div class="col-md-12 form-group form-actions text-right">
                     <?php echo MkcButton::save('Guardar sucursal'); ?>
                     <?php echo MkcButton::reset('form'); ?>
                     <?php echo MkcButton::cancel(); ?>
